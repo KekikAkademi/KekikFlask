@@ -1,0 +1,39 @@
+{% extends "taban.html" %}
+{% block kekik_icerik %}
+
+<h3>{{ icerik }}</h3>
+
+<hr>
+
+<p>Bunlar da rastgele üretilen veriler;</p>
+<div class="container">
+    <div class='row' id="veri"></div>
+</div>
+
+    <script>
+        // $(document).ready(function() {
+        $(function() {
+            window.setInterval(function(){
+                veriVer()
+            }, 1000)
+
+            function veriVer(){
+                $.ajax({
+                    url: "/veri_takip",
+                    type: "POST",
+                    dataType: "json",
+                    success: function(data){
+                        console.log(data)
+                        // $('#veri').replaceWith(data.veri)
+                        // $('#veri').html(data.veri)
+                        $('#veri').append('<div class="col-md-auto">' + data.veri + '</div>')
+                    },
+                    error: function(error){
+                        console.log(error)
+                    }
+                });
+            }
+        });
+    </script>
+
+{% endblock %}

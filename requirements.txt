@@ -1,0 +1,12 @@
+KekikTaban
+Flask
+Flask-Sitemap
+waitress
+Flask-RESTful
+Flask-Bootstrap
+SQLAlchemy
+Flask_SQLAlchemy
+WTForms
+Flask_WTF
+Flask_Login
+Flask-COMBO-JSONAPI

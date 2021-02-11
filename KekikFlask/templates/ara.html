@@ -1,0 +1,47 @@
+{% extends "taban.html" %}
+{% block kekik_icerik %}
+
+<h3>{{ icerik }}</h3>
+
+<hr>
+
+<div class="container">
+    <form class="form-inline">
+        <div class="form-group">
+            <label class="sr-only" for="aramaYap">Arama Yap</label>
+            <input type="text" class="form-control" id="aramaYap" placeholder="keyiflerolsun">
+        </div>
+        <button type="submit" class="btn btn-default">Google Amcaya Sor</button>
+    </form>
+</div>
+
+<hr>
+
+<div class="container">
+    <div id="KekikGoogle">
+
+    </div>
+</div>
+
+    <script>
+        // $(document).ready(function () {
+        $(function() {
+            $('form').on('submit', function (event) {
+                $.ajax({
+                    data: { ara: $('#aramaYap').val() },
+                    type: 'POST',
+                    url: '/arama_yap'
+                })
+                    .done(function (data) {
+                        $('#KekikGoogle').append('<p></p>')
+                        console.log(data);
+                        for (var i in data) {
+                            $('#KekikGoogle').append('<ul><a href="' + data[i].link + '"><h5>' + data[i].baslik + '</h5></a>' + '<div class="clearfix"></div>' + '<p>' + data[i].aciklama + '</p></ul>');
+                        }
+                    })
+                event.preventDefault();
+            });
+        });
+    </script>
+
+{% endblock %}
