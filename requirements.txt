@@ -1,4 +1,5 @@
 KekikTaban
+KekikSpatula
 Flask
 Flask-Sitemap
 waitress
