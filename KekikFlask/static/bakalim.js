@@ -1,0 +1,5 @@
+/*
+
+.. Çeşitli jS Fetişleri
+
+*/
