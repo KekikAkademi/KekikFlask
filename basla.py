@@ -1,7 +1,9 @@
 # Bu araç @keyiflerolsun tarafından | @KekikAkademi için yazılmıştır.
 
 from KekikFlask import app, onemli
-from os import environ
+from os import environ, system
+
+system("bash pyCacheTemizleyici.sh")
 
 port = int(environ.get("PORT", 5000))
 host = "0.0.0.0"
