@@ -2,8 +2,10 @@
 
 from KekikFlask import app
 from flask import render_template, request, jsonify
+from flask_jwt_extended import jwt_required
 
 @app.route('/ara')
+@jwt_required()
 def ara():
     return render_template(
         'ara.html',

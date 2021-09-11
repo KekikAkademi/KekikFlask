@@ -17,6 +17,6 @@ Flask-COMBO-JSONAPI
 pymongo
 pymongo[srv]
 PyJWT
+flask-jwt-extended
 pyTelegramBotAPI
-python-binance
 deep_translator

@@ -25,6 +25,23 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"]          = True
 app.config["JSON_AS_ASCII"]                        = False
 app.config["SITEMAP_INCLUDE_RULES_WITHOUT_PARAMS"] = True
 
+from os import urandom
+app.secret_key = urandom(16)
+
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity, set_access_cookies
+import random, string
+
+app.config['JWT_SECRET_KEY']          = ''.join(random.choice(string.ascii_lowercase) for i in range(22))
+app.config['JWT_TOKEN_LOCATION']      = ['cookies']
+app.config['JWT_COOKIE_SECURE']       = True
+app.config['JWT_COOKIE_CSRF_PROTECT'] = True
+#app.config['JWT_ACCESS_COOKIE_PATH'] = '/api/'
+flask_jwt = JWTManager(app)
+
+from jwt import encode, decode
+jwt_encode = lambda mail  : encode({"mail": mail}, app.config['SECRET_KEY'], algorithm="HS512")
+jwt_decode = lambda token : decode(token, app.config['SECRET_KEY'], algorithms=["HS512"])
+
 from typing import Dict
 
 def ip_log(hedef_ip:str) -> Dict[str, str]:
