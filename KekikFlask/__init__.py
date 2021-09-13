@@ -77,10 +77,13 @@ def istek_log(yanit:Response) -> Response:
 
     simdi = time()
 
-    if str(parse(request.headers.get('User-Agent'))).split('/')[2].strip() == 'Other':
+    try:
+        if str(parse(request.headers.get('User-Agent'))).split('/')[2].strip() == 'Other':
+            cihaz = request.headers.get('User-Agent')
+        else:
+            cihaz = parse(request.headers.get('User-Agent'))
+    except TypeError:
         cihaz = request.headers.get('User-Agent')
-    else:
-        cihaz = parse(request.headers.get('User-Agent'))
 
     try:
         log_ip = request.environ['HTTP_X_FORWARDED_FOR'] or request.environ['REMOTE_ADDR']
