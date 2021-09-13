@@ -11,5 +11,6 @@ if __name__ == '__main__':
 
     onemli(f'\nKekikFlask [bold red]{host}[yellow]:[/]{port}[/]\'de başlatılmıştır...\n')
 
-    # from waitress import serve
+    from waitress import serve
     # serve(app, host = host, port = port)
+    # serve(app, host = host, port = port, url_scheme = 'https')

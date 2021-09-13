@@ -82,6 +82,11 @@ def istek_log(yanit:Response) -> Response:
     else:
         cihaz = parse(request.headers.get('User-Agent'))
 
+    try:
+        log_ip = request.environ['HTTP_X_FORWARDED_FOR'] or request.environ['REMOTE_ADDR']
+    except KeyError:
+        log_ip = request.remote_addr
+
     log_veri = {
         'id'     : session.get('kullanici_id') or '', 
         'method' : request.method,
@@ -90,7 +95,7 @@ def istek_log(yanit:Response) -> Response:
         'data'   : request.data or request.form.to_dict(),
         'kod'    : yanit.status_code,
         'sure'   : round(simdi - g.start, 2),
-        'ip'     : request.remote_addr,
+        'ip'     : log_ip,
         'cihaz'  : cihaz,
         'host'   : request.host.split(":", 1)[0],
     }
