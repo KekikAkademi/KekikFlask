@@ -8,7 +8,7 @@ istekler = json.load(open("KekikFlask/yeteneklerim.json", "r+", encoding='utf8')
 
 @app.route('/favicon.ico', methods=['GET'])
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'), filename='img/favicon.ico', mimetype='image/x-icon')
+    return send_from_directory(directory=os.path.join(app.root_path, 'static'), path='img/favicon.ico', mimetype='image/x-icon')
 
 @app.errorhandler(404)
 def dort_yuz_dort(error):
